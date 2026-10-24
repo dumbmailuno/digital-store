@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Chart tokens. Slot-1 blue validated against the surface (palette check: all pass). */
+:root {
+  --viz-1: #2a78d6;
+  --viz-grid: #e3e6eb;
+  --viz-axis: #c4c9d2;
+  --viz-text: #4b5160;
+  --viz-hover: #f1f3f6;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-paper-dim text-ink font-sans antialiased; }
+  :focus-visible { @apply outline outline-2 outline-offset-2 outline-accent; }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-[44px] items-center justify-center rounded border border-transparent
+           bg-accent px-4 text-sm font-medium text-white transition-colors
+           hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost { @apply bg-transparent border-paper-line text-ink hover:bg-paper-dim; }
+  .input {
+    @apply block min-h-[44px] w-full rounded border border-paper-line bg-paper px-3 text-sm
+           text-ink placeholder:text-ink-mute;
+  }
+  .card { @apply rounded border border-paper-line bg-paper p-5 sm:p-6; }
+}
