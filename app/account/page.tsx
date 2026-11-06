@@ -19,9 +19,9 @@ export default async function Account() {
   ]);
 
   return (
-    <main className="mx-auto max-w-2xl space-y-6 px-4 py-8">
+    <main className="mx-auto max-w-2xl space-y-6 px-4 py-8 sm:px-6 sm:py-10">
       <div className="flex items-baseline justify-between">
-        <h1 className="text-2xl font-semibold">Account</h1>
+        <h1 className="page-title">Account</h1>
         <Link href="/account/orders" className="text-sm underline">My orders</Link>
       </div>
       <p className="text-sm text-ink-soft">{profile?.email} · <span className="font-mono">{profile?.public_id}</span>{!user.email_confirmed_at && <span className="ml-2 text-warn">Email not verified</span>}</p>

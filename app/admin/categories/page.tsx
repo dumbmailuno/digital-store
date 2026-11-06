@@ -9,7 +9,7 @@ export default async function Categories() {
   const { data } = await supabase.from("categories").select("id, name, slug, status").order("name");
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Categories</h1>
+      <h1 className="page-title-sm">Categories</h1>
       <CategoryManager categories={(data ?? []) as any} />
     </div>
   );

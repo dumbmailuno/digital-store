@@ -56,12 +56,12 @@ export default async function AdminDashboard({ searchParams }: { searchParams: {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold">Dashboard</h1>
+        <h1 className="page-title-sm">Dashboard</h1>
         {/* one filter row above the charts; scopes everything below it */}
         <nav aria-label="Date range" className="flex gap-1 text-sm">
           {RANGES.map((r) => (
             <Link key={r} href={`/admin?days=${r}`} aria-current={r === days ? "true" : undefined}
-              className={`rounded border px-3 py-1.5 ${r === days ? "border-accent bg-accent text-white" : "border-paper-line bg-paper hover:bg-paper-dim"}`}>
+              className={`chip ${r === days ? "chip-on" : ""}`}>
               {r} days
             </Link>
           ))}

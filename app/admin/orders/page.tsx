@@ -28,7 +28,7 @@ export default async function Orders({ searchParams }: { searchParams: { status?
 
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Orders</h1>
+      <h1 className="page-title-sm">Orders</h1>
       <form className="flex flex-col gap-2 sm:flex-row" role="search">
         <input name="q" defaultValue={q} placeholder="Order ID, e.g. ORD-20261021" aria-label="Search by order ID" className="input sm:max-w-xs" maxLength={30} />
         <select name="status" defaultValue={status ?? ""} aria-label="Status" className="input sm:max-w-[200px]">

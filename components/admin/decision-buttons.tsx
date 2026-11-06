@@ -35,7 +35,7 @@ export function DecisionButtons({ paymentId }: { paymentId: string }) {
 
   return (
     <Guard>
-    <div className="space-y-2 rounded border border-paper-line bg-paper-dim p-3">
+    <div className="space-y-2 rounded-2xl border border-paper-line bg-paper-dim p-3">
       <p className="text-sm font-medium">{mode === "approve" ? "Approve this payment and email the download links?" : "Reject this payment?"}</p>
       <label className="block text-xs text-ink-soft" htmlFor={`n-${paymentId}`}>{mode === "reject" ? "Reason (sent to the customer)" : "Note (optional, kept in the audit trail)"}</label>
       <textarea id={`n-${paymentId}`} value={note} onChange={(e) => setNote(e.target.value)} maxLength={500} rows={2} className="input min-h-[72px] py-2" />

@@ -16,21 +16,12 @@ export const nameSchema = z
   .min(2, "Enter your full name (at least 2 characters)")
   .max(100, "That name is too long");
 
-export const PASSWORD_RULES = [
-  { id: "len", label: "At least 10 characters", test: (v: string) => v.length >= 10 },
-  { id: "lower", label: "A lowercase letter", test: (v: string) => /[a-z]/.test(v) },
-  { id: "upper", label: "An uppercase letter", test: (v: string) => /[A-Z]/.test(v) },
-  { id: "num", label: "A number", test: (v: string) => /\d/.test(v) },
-  { id: "sym", label: "A symbol", test: (v: string) => /[^A-Za-z0-9]/.test(v) },
-] as const;
+export const PASSWORD_MIN_LENGTH = 8;
 
 export const passwordSchema = z
   .string()
+  .min(PASSWORD_MIN_LENGTH, `Use at least ${PASSWORD_MIN_LENGTH} characters`)
   .max(128, "Password is too long")
-  .superRefine((v, ctx) => {
-    const missing = PASSWORD_RULES.filter((r) => !r.test(v));
-    if (missing.length) ctx.addIssue({ code: "custom", message: "Password does not meet all requirements" });
-  });
 
 export const registerSchema = z
   .object({

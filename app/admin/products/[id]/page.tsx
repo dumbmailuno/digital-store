@@ -23,7 +23,7 @@ export default async function EditProduct({ params }: { params: { id: string } }
     <div className="space-y-5">
       <Link href="/admin/products" className="text-sm underline">← Products</Link>
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h1 className="text-2xl font-semibold">{prod.name}</h1>
+        <h1 className="page-title-sm">{prod.name}</h1>
         <p className="font-mono text-xs text-ink-mute">{prod.public_id}</p>
       </div>
       {prod.status === "active" && <Link href={`/products/${prod.slug}`} className="inline-block text-sm underline">View in store</Link>}

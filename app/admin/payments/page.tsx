@@ -27,11 +27,11 @@ export default async function Payments({ searchParams }: { searchParams: { filte
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold">Payments</h1>
+        <h1 className="page-title-sm">Payments</h1>
         <nav aria-label="Filter" className="flex gap-1 text-sm">
           {([["review", "Needs review"], ["all", "All payments"]] as const).map(([k, l]) => (
             <Link key={k} href={`/admin/payments?filter=${k}`} aria-current={k === filter ? "true" : undefined}
-              className={`rounded border px-3 py-1.5 ${k === filter ? "border-accent bg-accent text-white" : "border-paper-line bg-paper hover:bg-paper-dim"}`}>{l}</Link>
+              className={`chip ${k === filter ? "chip-on" : ""}`}>{l}</Link>
           ))}
         </nav>
       </div>
@@ -64,7 +64,7 @@ export default async function Payments({ searchParams }: { searchParams: { filte
                     );
                   })}
                 </dl>
-                {latest?.note && <p className="rounded border border-paper-line bg-paper-dim px-3 py-2 text-sm"><span className="text-xs text-ink-mute">Latest note: </span>{latest.note}</p>}
+                {latest?.note && <p className="rounded-2xl border border-paper-line bg-paper-dim px-3 py-2 text-sm"><span className="text-xs text-ink-mute">Latest note: </span>{latest.note}</p>}
                 {p.status === "admin_review" && <DecisionButtons paymentId={p.public_id} />}
               </li>
             );

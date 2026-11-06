@@ -82,13 +82,13 @@ export function PaymentPanel(p: Props) {
     <div className="space-y-4">
       <div className="card">
         <p className="text-xs text-ink-mute">Payment {p.paymentId} · Order {p.orderId}</p>
-        <h1 className="mt-1 text-xl font-semibold">{copy.title}</h1>
+        <h1 className="page-title mt-1">{copy.title}</h1>
         <p className="mt-1 text-sm text-ink-soft">{copy.body}</p>
       </div>
 
       {awaiting && (
         <div className="card space-y-4">
-          <div className="rounded border border-warn/40 bg-paper-dim p-3 text-sm">
+          <div className="rounded-2xl border border-warn/40 bg-paper-dim p-3 text-sm">
             Send <b>only {p.asset}</b> on <b>{NETWORK_LABEL[p.network] ?? p.network}</b>. Funds sent on a different network are lost and cannot be recovered. All sales are final.
           </div>
 

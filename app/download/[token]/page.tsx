@@ -18,7 +18,7 @@ export default async function DownloadPage({ params }: { params: { token: string
       <div className="card text-center">
         {info ? (
           <>
-            <h1 className="text-xl font-semibold">{info.product_name}</h1>
+            <h1 className="page-title">{info.product_name}</h1>
             <p className="mt-2 text-sm text-ink-soft">
               {info.downloads_left === null ? "Unlimited downloads" : `${info.downloads_left} download${info.downloads_left === 1 ? "" : "s"} left`}
               {info.expires_at ? ` · valid until ${new Date(info.expires_at).toLocaleString()}` : ""}
@@ -29,7 +29,7 @@ export default async function DownloadPage({ params }: { params: { token: string
           </>
         ) : (
           <>
-            <h1 className="text-xl font-semibold">Link unavailable</h1>
+            <h1 className="page-title">Link unavailable</h1>
             <p className="mt-2 text-sm text-ink-soft">This download link is invalid, has expired, or has no downloads left. Contact support if you need a new one.</p>
           </>
         )}

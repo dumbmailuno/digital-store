@@ -30,7 +30,7 @@ export default async function DevHome() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold">Overview</h1>
+      <h1 className="page-title-sm">Overview</h1>
       {!s || !d ? <div className="card text-sm text-bad">Couldn't read the subscription. Make sure you've completed two-factor sign-in.</div> : (
         <section className="card space-y-1">
           <p className="text-xs text-ink-soft">Store status</p>
@@ -48,7 +48,7 @@ export default async function DevHome() {
         <Row label="Open payment quotes" value={h.awaiting_payment ?? 0} />
         <Row label="Verification mode" value={(ps.data as any)?.verification_mode ?? "-"} />
       </section>
-      {!cronOk && <p role="alert" className="rounded border border-bad/40 bg-paper p-3 text-sm">The background job hasn't run in the last 15 minutes. Until it does, unpaid quotes won't expire, slow payments won't be re-checked, and failed download emails won't be retried.</p>}
+      {!cronOk && <p role="alert" className="rounded-2xl border border-bad/40 bg-paper p-3 text-sm">The background job hasn't run in the last 15 minutes. Until it does, unpaid quotes won't expire, slow payments won't be re-checked, and failed download emails won't be retried.</p>}
     </div>
   );
 }

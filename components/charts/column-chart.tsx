@@ -93,7 +93,7 @@ export function ColumnChart({ title, subtitle, data, kind }: { title: string; su
         </svg>
 
         {a && (
-          <div role="status" className="pointer-events-none absolute top-1 z-10 rounded border border-paper-line bg-paper px-3 py-2 text-xs shadow-sm"
+          <div role="status" className="pointer-events-none absolute top-1 z-10 rounded-2xl border border-paper-line bg-paper px-3 py-2 text-xs shadow-sm"
             style={{ left: `${leftPct}%`, transform: leftPct > 78 ? "translateX(-100%)" : leftPct < 22 ? "translateX(0)" : "translateX(-50%)" }}>
             <p className="text-base font-semibold leading-tight">{fmt[kind](a.value)}</p>
             <p className="text-ink-soft"><span aria-hidden className="mr-1.5 inline-block h-0.5 w-3 align-middle" style={{ background: "var(--viz-1)" }} />{a.label}</p>
@@ -103,7 +103,7 @@ export function ColumnChart({ title, subtitle, data, kind }: { title: string; su
 
       <details className="mt-3 text-xs">
         <summary className="cursor-pointer text-ink-soft underline-offset-2 hover:underline">View as table</summary>
-        <div className="mt-2 max-h-56 overflow-auto rounded border border-paper-line">
+        <div className="mt-2 max-h-56 overflow-auto rounded-2xl border border-paper-line">
           <table className="w-full text-left" aria-describedby={uid}>
             <caption id={uid} className="sr-only">{title}</caption>
             <thead className="sticky top-0 bg-paper-dim"><tr><th className="px-3 py-1.5 font-medium">Day</th><th className="px-3 py-1.5 text-right font-medium">{kind === "usd" ? "Amount" : "Count"}</th></tr></thead>

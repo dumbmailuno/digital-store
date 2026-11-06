@@ -72,12 +72,12 @@ export function SettingsForm({ initial }: { initial: S }) {
       <div>
         <p className="mb-1 text-sm font-medium">Logo</p>
         <div className="flex flex-wrap items-center gap-3">
-          {logo ? <img src={publicUrl("store-assets", logo)!} alt="Current logo" className="h-12 max-w-[160px] rounded border border-paper-line bg-white object-contain p-1" /> : <span className="text-xs text-ink-mute">No logo</span>}
+          {logo ? <img src={publicUrl("store-assets", logo)!} alt="Current logo" className="h-12 max-w-[160px] rounded-2xl border border-paper-line bg-white object-contain p-1" /> : <span className="text-xs text-ink-mute">No logo</span>}
           <label className="btn btn-ghost min-h-[36px] cursor-pointer px-3">Upload logo<input type="file" accept="image/png,image/jpeg,image/webp" className="sr-only" onChange={(e) => { uploadLogo(e.target.files); e.target.value = ""; }} /></label>
           {logo && <button type="button" className="text-xs underline" onClick={() => setLogo(null)}>Remove</button>}
         </div>
       </div>
-      <div className="rounded border border-paper-line bg-paper-dim p-3">
+      <div className="rounded-2xl border border-paper-line bg-paper-dim p-3">
         <label className="flex items-start gap-3 text-sm">
           <input type="checkbox" className="mt-1 h-4 w-4" checked={support} onChange={(e) => setSupport(e.target.checked)} />
           <span>

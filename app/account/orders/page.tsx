@@ -25,7 +25,7 @@ export default async function Orders() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-8">
       <div className="flex items-baseline justify-between">
-        <h1 className="text-2xl font-semibold">My orders</h1>
+        <h1 className="page-title">My orders</h1>
         <Link href="/account" className="text-sm underline">Account</Link>
       </div>
       {orders.length === 0 ? (

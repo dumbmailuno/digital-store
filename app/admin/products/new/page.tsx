@@ -10,7 +10,7 @@ export default async function NewProduct() {
   return (
     <div className="space-y-5">
       <Link href="/admin/products" className="text-sm underline">← Products</Link>
-      <h1 className="text-2xl font-semibold">New product</h1>
+      <h1 className="page-title-sm">New product</h1>
       <ProductForm categories={(cats ?? []) as any} initial={{ name: "", slug: "", category_id: null, price_usd: "", description: "", status: "draft", download_limit: 5, link_expiry_hours: 168 }} />
     </div>
   );

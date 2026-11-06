@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Sign in" };
 export default function LoginPage() {
   return (
     <main className="mx-auto w-full max-w-md px-4 py-10 sm:py-16">
-      <h1 className="mb-6 text-2xl font-semibold">Sign in</h1>
+      <h1 className="page-title mb-6">Sign in</h1>
       <Suspense>
         <LoginForm />
       </Suspense>

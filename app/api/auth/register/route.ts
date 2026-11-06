@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     const site = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
     const { error } = await createClient().auth.signUp({
       email, password,
-      options: { data: { full_name: fullName }, emailRedirectTo: `${site}/auth/callback?next=/account` },
+      options: { data: { full_name: fullName }, emailRedirectTo: `${site}/auth/callback?next=/shop` },
     });
     if (error) {
       // the real reason goes to the server log only (see your terminal); the browser gets a safe message

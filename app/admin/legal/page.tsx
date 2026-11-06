@@ -10,7 +10,7 @@ export default async function Legal() {
   const docs = ((data ?? []) as any[]).sort((a, b) => ORDER.indexOf(a.slug) - ORDER.indexOf(b.slug));
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Legal pages</h1>
+      <h1 className="page-title-sm">Legal pages</h1>
       <LegalEditor key={docs.map((d) => d.updated_at ?? d.title).join("|")} docs={docs} />
     </div>
   );

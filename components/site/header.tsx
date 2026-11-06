@@ -1,8 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { publicUrl } from "@/lib/storage";
-import { CartLink } from "./cart-link";
-import { SignOutButton } from "./sign-out";
+import { HeaderNavigation } from "./header-navigation";
 
 export async function Header() {
   const supabase = createClient();
@@ -17,33 +16,13 @@ export async function Header() {
   }
   const staff = roles.includes("admin");
 
-  return (
-    <header className="border-b border-paper-line bg-paper">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-4 py-3">
-        <Link href="/" className="flex min-h-[40px] items-center gap-2 text-base font-semibold">
-          {store?.logo_path && <img src={publicUrl("store-assets", store.logo_path)!} alt="" className="h-7 w-auto max-w-[120px] object-contain" />}
-          {store?.store_name ?? "Store"}
-        </Link>
-        <nav aria-label="Main" className="flex flex-wrap items-center gap-x-4 text-sm">
-          <Link href="/shop" className="inline-flex min-h-[40px] items-center hover:underline">Shop</Link>
-          <CartLink />
-          {user ? (
-            <>
-              <Link href="/account" className="inline-flex min-h-[40px] items-center hover:underline">Account</Link>
-              {staff && <Link href="/admin" className="inline-flex min-h-[40px] items-center hover:underline">Admin</Link>}
-              {roles.includes("developer") && <Link href="/dev" className="inline-flex min-h-[40px] items-center hover:underline">Dev</Link>}
-              <SignOutButton />
-            </>
-          ) : (
-            <>
-              <Link href="/login" className="inline-flex min-h-[40px] items-center hover:underline">Sign in</Link>
-              <Link href="/register" className="btn min-h-[36px] px-3">Create account</Link>
-            </>
-          )}
-        </nav>
-      </div>
-    </header>
-  );
+  return <HeaderNavigation
+    storeName={store?.store_name ?? "Store"}
+    logoUrl={publicUrl("store-assets", store?.logo_path)}
+    signedIn={!!user}
+    staff={staff}
+    developer={roles.includes("developer")}
+  />;
 }
 
 export function Footer() {

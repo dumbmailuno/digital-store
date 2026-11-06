@@ -7,7 +7,7 @@ import { postJson } from "@/lib/client-api";
 import { useToast } from "@/components/ui/toast";
 import { Field } from "@/components/ui/field";
 import {
-  PASSWORD_RULES, emailSchema, fieldError, nameSchema, registerSchema,
+  emailSchema, fieldError, nameSchema, passwordSchema, registerSchema,
 } from "@/lib/validation";
 
 type Touched = Partial<Record<"fullName" | "email" | "password" | "confirm", boolean>>;
@@ -26,7 +26,7 @@ export function RegisterForm() {
   const errors = useMemo(() => ({
     fullName: fieldError(nameSchema, v.fullName),
     email: fieldError(emailSchema, v.email),
-    password: PASSWORD_RULES.every((r) => r.test(v.password)) ? null : "Password does not meet all requirements",
+    password: fieldError(passwordSchema, v.password),
     confirm: v.confirm && v.confirm === v.password ? null : v.confirm ? "Passwords don't match" : "Confirm your password",
   }), [v]);
 
@@ -59,18 +59,8 @@ export function RegisterForm() {
         error={errors.email} valid={!errors.email} touched={!!touched.email} />
       <Field label="Password" type="password" value={v.password} autoComplete="new-password"
         onChange={(x) => { setV({ ...v, password: x }); touch("password"); }} onBlur={() => touch("password")}
-        error={errors.password} valid={!errors.password} touched={!!touched.password}>
-        <ul className="mb-2 grid grid-cols-1 gap-x-4 gap-y-1 text-xs sm:grid-cols-2">
-          {PASSWORD_RULES.map((r) => {
-            const ok = r.test(v.password);
-            return (
-              <li key={r.id} className={ok ? "text-ok" : "text-ink-mute"}>
-                <span aria-hidden>{ok ? "✓" : "○"}</span> {r.label}
-              </li>
-            );
-          })}
-        </ul>
-      </Field>
+        error={errors.password} valid={!errors.password} touched={!!touched.password}
+        hint="Use at least 8 characters." />
       <Field label="Confirm password" type="password" value={v.confirm} autoComplete="new-password"
         onChange={(x) => { setV({ ...v, confirm: x }); touch("confirm"); }} onBlur={() => touch("confirm")}
         error={errors.confirm} valid={!errors.confirm} touched={!!touched.confirm} />

@@ -21,7 +21,7 @@ export default async function Security({ searchParams }: { searchParams: { requi
   return (
     <main className="mx-auto max-w-md space-y-4 px-4 py-8">
       <Link href="/account" className="text-sm underline">← Account</Link>
-      <h1 className="text-2xl font-semibold">Two-factor authentication</h1>
+      <h1 className="page-title">Two-factor authentication</h1>
       {!staff && <EmailTwoFactor enabled={emailOn} />}
       <TotpManager required={staff || searchParams.required === "1"} />
     </main>

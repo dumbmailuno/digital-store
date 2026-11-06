@@ -18,7 +18,7 @@ export default async function Customers({ searchParams }: { searchParams: { q?: 
 
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Customers <span className="text-base font-normal text-ink-mute">({total})</span></h1>
+      <h1 className="page-title-sm">Customers <span className="text-base font-normal text-ink-mute">({total})</span></h1>
       <form className="flex flex-col gap-2 sm:flex-row" role="search">
         <input name="q" defaultValue={q} placeholder="Search name, email or ID" aria-label="Search customers" className="input sm:max-w-sm" maxLength={60} />
         <button className="btn">Search</button>

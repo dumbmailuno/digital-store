@@ -4,11 +4,44 @@
 
 /* Chart tokens. Slot-1 blue validated against the surface (palette check: all pass). */
 :root {
+  color-scheme: light;
+  --ink: 22 24 29;
+  --ink-soft: 75 81 96;
+  --ink-mute: 118 125 140;
+  --paper: 255 255 255;
+  --paper-dim: 246 247 249;
+  --paper-line: 227 230 235;
+  --accent: 43 74 125;
+  --accent-hover: 34 59 100;
+  --ok: 31 122 77;
+  --warn: 154 103 0;
+  --bad: 179 38 30;
+  --nav: 0 0 0;
   --viz-1: #2a78d6;
   --viz-grid: #e3e6eb;
   --viz-axis: #c4c9d2;
   --viz-text: #4b5160;
   --viz-hover: #f1f3f6;
+}
+
+:root.dark {
+  color-scheme: dark;
+  --ink: 237 239 243;
+  --ink-soft: 184 190 201;
+  --ink-mute: 143 151 165;
+  --paper: 27 30 36;
+  --paper-dim: 21 24 29;
+  --paper-line: 55 60 70;
+  --accent: 63 99 159;
+  --accent-hover: 53 85 141;
+  --ok: 112 207 156;
+  --warn: 242 195 92;
+  --bad: 255 137 128;
+  --nav: 27 30 36;
+  --viz-grid: #373c46;
+  --viz-axis: #555d6b;
+  --viz-text: #b8bec9;
+  --viz-hover: #252a32;
 }
 
 @layer base {
@@ -17,16 +50,80 @@
   :focus-visible { @apply outline outline-2 outline-offset-2 outline-accent; }
 }
 
+@keyframes nav-container-enter {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nav-item-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes nav-action-enter {
+  from { opacity: 0; transform: scale(.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.nav-enter { animation: nav-container-enter 700ms cubic-bezier(.22, 1, .36, 1) both; }
+.nav-enter-brand { animation: nav-item-enter 550ms cubic-bezier(.22, 1, .36, 1) 150ms both; }
+.nav-enter-item { animation: nav-item-enter 500ms cubic-bezier(.22, 1, .36, 1) both; }
+nav[aria-label="Main"] > .nav-enter-item:nth-child(1) { animation-delay: 220ms; }
+nav[aria-label="Main"] > .nav-enter-item:nth-child(2) { animation-delay: 295ms; }
+nav[aria-label="Main"] > .nav-enter-item:nth-child(3) { animation-delay: 370ms; }
+nav[aria-label="Main"] > .nav-enter-item:nth-child(4) { animation-delay: 445ms; }
+nav[aria-label="Main"] > .nav-enter-item:nth-child(5) { animation-delay: 520ms; }
+nav[aria-label="Main"] > .nav-enter-item:nth-child(6) { animation-delay: 595ms; }
+.nav-enter-download { animation: nav-action-enter 500ms cubic-bezier(.22, 1, .36, 1) 680ms both; }
+.nav-mobile {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: max-height 220ms ease, opacity 160ms ease, visibility 220ms;
+}
+.nav-mobile-open { max-height: 24rem; opacity: 1; pointer-events: auto; visibility: visible; }
+.nav-mobile-open .nav-mobile-item { animation: nav-item-enter 260ms ease-out both; }
+.nav-mobile-open .nav-mobile-item:nth-child(1) { animation-delay: 20ms; }
+.nav-mobile-open .nav-mobile-item:nth-child(2) { animation-delay: 50ms; }
+.nav-mobile-open .nav-mobile-item:nth-child(3) { animation-delay: 80ms; }
+.nav-mobile-open .nav-mobile-item:nth-child(4) { animation-delay: 110ms; }
+.nav-mobile-open .nav-mobile-item:nth-child(5) { animation-delay: 140ms; }
+.nav-mobile-open .nav-mobile-item:nth-child(6) { animation-delay: 170ms; }
+
 @layer components {
+  /* Shape language taken from / and /cart: pills for actions and chips,
+     rounded-2xl for surfaces, bold tight headings. */
   .btn {
-    @apply inline-flex min-h-[44px] items-center justify-center rounded border border-transparent
+    @apply inline-flex min-h-[44px] items-center justify-center rounded-full border border-transparent
            bg-accent px-4 text-sm font-medium text-white transition-colors
            hover:bg-accent-hover disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-ghost { @apply bg-transparent border-paper-line text-ink hover:bg-paper-dim; }
   .input {
-    @apply block min-h-[44px] w-full rounded border border-paper-line bg-paper px-3 text-sm
+    @apply block min-h-[44px] w-full rounded-xl border border-paper-line bg-paper px-3 text-sm
            text-ink placeholder:text-ink-mute;
   }
-  .card { @apply rounded border border-paper-line bg-paper p-5 sm:p-6; }
+  .card { @apply rounded-2xl border border-paper-line bg-paper p-5 sm:p-6; }
+  .chip {
+    @apply inline-flex items-center rounded-full border border-paper-line bg-paper px-3 py-1.5 text-sm
+           transition-colors hover:bg-paper-dim;
+  }
+  .chip-on { @apply border-accent bg-accent text-white hover:bg-accent-hover; }
+  .notice { @apply rounded-2xl border border-paper-line bg-paper px-4 py-3 text-sm; }
+  .page-title { @apply text-[30px] font-bold leading-tight tracking-[-0.045em] sm:text-4xl; }
+  .page-title-sm { @apply text-2xl font-bold leading-tight tracking-[-0.03em]; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-enter,
+  .nav-enter-brand,
+  .nav-enter-item,
+  .nav-enter-download,
+  .nav-mobile-open .nav-mobile-item {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+  .nav-mobile { transition-duration: 0.01ms; }
 }

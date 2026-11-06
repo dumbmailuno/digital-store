@@ -97,7 +97,7 @@ export function ProductMedia({ productId, images, file, published }: { productId
         {sorted.length > 0 && (
           <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3">
             {sorted.map((i, idx) => (
-              <li key={i.id} className="overflow-hidden rounded border border-paper-line">
+              <li key={i.id} className="overflow-hidden rounded-2xl border border-paper-line">
                 <div className="aspect-[4/3] bg-paper-dim"><img src={publicUrl("product-images", i.path)!} alt="" className="h-full w-full object-cover" /></div>
                 <div className="flex items-center justify-between gap-1 p-2 text-xs">
                   {idx === 0 ? <span className="font-medium text-ok">Main image</span> : <button className="underline" onClick={() => makeMain(i)}>Make main</button>}

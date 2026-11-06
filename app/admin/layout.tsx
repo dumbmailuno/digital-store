@@ -19,17 +19,17 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   ]);
 
   const items: NavItem[] = [
-    { href: "/admin", label: "Dashboard" },
-    { href: "/admin/payments", label: "Payments", badge: review ?? 0 },
-    { href: "/admin/orders", label: "Orders" },
-    { href: "/admin/products", label: "Products" },
-    { href: "/admin/categories", label: "Categories" },
-    { href: "/admin/avatars", label: "Avatars" },
-    { href: "/admin/customers", label: "Customers" },
-    { href: "/admin/wallets", label: "Wallets" },
-    { href: "/admin/settings", label: "Store settings" },
-    { href: "/admin/legal", label: "Legal pages" },
-    { href: "/admin/audit-log", label: "Audit log" },
+    { href: "/admin", label: "Dashboard", icon: "LayoutDashboard" },
+    { href: "/admin/payments", label: "Payments", icon: "CreditCard", badge: review ?? 0 },
+    { href: "/admin/orders", label: "Orders", icon: "ClipboardList" },
+    { href: "/admin/products", label: "Products", icon: "Package" },
+    { href: "/admin/categories", label: "Categories", icon: "Tags" },
+    { href: "/admin/avatars", label: "Avatars", icon: "UserRound" },
+    { href: "/admin/customers", label: "Customers", icon: "Users" },
+    { href: "/admin/wallets", label: "Wallets", icon: "Wallet" },
+    { href: "/admin/settings", label: "Store settings", icon: "Settings2" },
+    { href: "/admin/legal", label: "Legal pages", icon: "FileText" },
+    { href: "/admin/audit-log", label: "Audit log", icon: "ClipboardList" },
   ];
 
   const n = notice as { days_left: number; maintenance_forced: boolean; status: string } | null;
@@ -38,12 +38,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="mx-auto max-w-7xl px-4 py-6">
       {readOnly && (
-        <div role="status" className="mb-5 rounded border border-accent/40 bg-paper px-4 py-3 text-sm">
+        <div role="status" className="mb-5 rounded-2xl border border-accent/40 bg-paper px-4 py-3 text-sm">
           <b>Read-only support view.</b> You're looking at the store as the developer. The store admin switched this on and can switch it off in Store settings. Nothing here can be changed.
         </div>
       )}
       {warn && n && (
-        <div role="alert" className="mb-5 rounded border border-warn/40 bg-paper px-4 py-3 text-sm">
+        <div role="alert" className="mb-5 rounded-2xl border border-warn/40 bg-paper px-4 py-3 text-sm">
           {n.maintenance_forced || n.status !== "active"
             ? <>The store is in <b>{n.maintenance_forced ? "maintenance" : n.status}</b> mode. Contact your developer.</>
             : n.days_left > 0
@@ -51,7 +51,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               : <>Your service subscription has ended and the store will go offline when the grace period finishes. Contact your developer now.</>}
         </div>
       )}
-      <div className="md:grid md:grid-cols-[200px_minmax(0,1fr)] md:gap-8">
+      <div className="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:items-start lg:gap-8">
         <SectionNav items={items} label="Admin" />
         <div className="min-w-0"><ReadOnlyProvider value={readOnly}>{children}</ReadOnlyProvider></div>
       </div>

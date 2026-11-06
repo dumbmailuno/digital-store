@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useToast } from "@/components/ui/toast";
 import { Field } from "@/components/ui/field";
-import { PASSWORD_RULES } from "@/lib/validation";
+import { fieldError, passwordSchema } from "@/lib/validation";
 
 /** Shared by "change password" (signed in) and "reset password" (arrived via email link). */
 export function PasswordForm({ onDone, submitLabel = "Update password" }: { onDone?: () => void; submitLabel?: string }) {
@@ -15,7 +15,7 @@ export function PasswordForm({ onDone, submitLabel = "Update password" }: { onDo
   const [busy, setBusy] = useState(false);
 
   const errs = useMemo(() => ({
-    pw: PASSWORD_RULES.every((r) => r.test(pw)) ? null : "Password does not meet all requirements",
+    pw: fieldError(passwordSchema, pw),
     confirm: confirm && confirm === pw ? null : confirm ? "Passwords don't match" : "Confirm your password",
   }), [pw, confirm]);
 
@@ -35,11 +35,7 @@ export function PasswordForm({ onDone, submitLabel = "Update password" }: { onDo
     <form onSubmit={submit} noValidate className="card space-y-3">
       <Field label="New password" type="password" value={pw} autoComplete="new-password"
         onChange={(v) => { setPw(v); setT((s) => ({ ...s, pw: true })); }} onBlur={() => setT((s) => ({ ...s, pw: true }))}
-        error={errs.pw} valid={!errs.pw} touched={t.pw}>
-        <ul className="mb-2 grid grid-cols-1 gap-x-4 gap-y-1 text-xs sm:grid-cols-2">
-          {PASSWORD_RULES.map((r) => <li key={r.id} className={r.test(pw) ? "text-ok" : "text-ink-mute"}><span aria-hidden>{r.test(pw) ? "✓" : "○"}</span> {r.label}</li>)}
-        </ul>
-      </Field>
+        error={errs.pw} valid={!errs.pw} touched={t.pw} hint="Use at least 8 characters." />
       <Field label="Confirm new password" type="password" value={confirm} autoComplete="new-password"
         onChange={(v) => { setConfirm(v); setT((s) => ({ ...s, confirm: true })); }} onBlur={() => setT((s) => ({ ...s, confirm: true }))}
         error={errs.confirm} valid={!errs.confirm} touched={t.confirm} />

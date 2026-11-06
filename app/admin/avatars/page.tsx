@@ -12,7 +12,7 @@ export default async function Avatars() {
   return (
     <div className="space-y-5">
       <div>
-        <h1 className="text-2xl font-semibold">Avatars</h1>
+        <h1 className="page-title-sm">Avatars</h1>
         <p className="mt-1 text-sm text-ink-soft">Customers choose their profile picture from this set, and only after they verify their email. Upload simple SVG drawings.</p>
       </div>
       <AvatarManager items={items} />

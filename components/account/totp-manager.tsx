@@ -65,7 +65,7 @@ export function TotpManager({ required }: { required: boolean }) {
   if (enrol) return (
     <form onSubmit={confirm} noValidate className="card space-y-4">
       <p className="text-sm">1. Scan this with an authenticator app (Google Authenticator, 1Password, Authy…).</p>
-      <img src={enrol.qr} alt="QR code for your authenticator app" className="mx-auto h-48 w-48 rounded border border-paper-line bg-white p-2" />
+      <img src={enrol.qr} alt="QR code for your authenticator app" className="mx-auto h-48 w-48 rounded-2xl border border-paper-line bg-white p-2" />
       <p className="text-xs text-ink-mute">Can't scan? Enter this key manually: <span className="break-all font-mono text-ink">{enrol.secret}</span></p>
       <div>
         <label htmlFor="c" className="block text-sm font-medium">2. Enter the 6-digit code it shows</label>
@@ -83,7 +83,7 @@ export function TotpManager({ required }: { required: boolean }) {
 
   return (
     <div className="card space-y-3 text-sm">
-      {required && !factor && <p className="rounded border border-warn/40 p-3 text-warn">Two-factor authentication is mandatory for your role. Set it up to continue.</p>}
+      {required && !factor && <p className="rounded-2xl border border-warn/40 p-3 text-warn">Two-factor authentication is mandatory for your role. Set it up to continue.</p>}
       <p>Status: <b className={factor ? "text-ok" : "text-ink-soft"}>{factor ? "On" : "Off"}</b></p>
       {factor ? (
         required ? <p className="text-xs text-ink-mute">Required for your role, so it can't be turned off.</p> : (

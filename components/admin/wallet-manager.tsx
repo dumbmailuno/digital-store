@@ -92,7 +92,7 @@ export function WalletManager({ wallets }: { wallets: Wallet[] }) {
               {check?.ok && <span className="text-ok">✓ Checksum valid</span>}
               {check?.ok && check.warning && <span className="mt-1 block text-warn">{check.warning}</span>}
             </p>
-            {check?.ok && <p className="mt-1 break-all rounded border border-paper-line bg-paper-dim p-2 font-mono text-xs">{group(check.address)}</p>}
+            {check?.ok && <p className="mt-1 break-all rounded-2xl border border-paper-line bg-paper-dim p-2 font-mono text-xs">{group(check.address)}</p>}
           </div>
           <div>
             <label htmlFor="lbl" className="mb-1 block text-sm font-medium">Label <span className="font-normal text-ink-mute">(optional, only you see it)</span></label>

@@ -27,8 +27,8 @@ export async function AuditTable({ basePath, page }: { basePath: string; page: n
                 <details className="mt-2 text-xs">
                   <summary className="cursor-pointer text-ink-soft hover:underline">Details</summary>
                   <div className="mt-2 grid gap-2 md:grid-cols-2">
-                    {r.old_value && <div><p className="mb-1 text-ink-mute">Before</p><pre className="max-h-48 overflow-auto rounded border border-paper-line bg-paper-dim p-2">{JSON.stringify(r.old_value, null, 2)}</pre></div>}
-                    {r.new_value && <div><p className="mb-1 text-ink-mute">After</p><pre className="max-h-48 overflow-auto rounded border border-paper-line bg-paper-dim p-2">{JSON.stringify(r.new_value, null, 2)}</pre></div>}
+                    {r.old_value && <div><p className="mb-1 text-ink-mute">Before</p><pre className="max-h-48 overflow-auto rounded-2xl border border-paper-line bg-paper-dim p-2">{JSON.stringify(r.old_value, null, 2)}</pre></div>}
+                    {r.new_value && <div><p className="mb-1 text-ink-mute">After</p><pre className="max-h-48 overflow-auto rounded-2xl border border-paper-line bg-paper-dim p-2">{JSON.stringify(r.new_value, null, 2)}</pre></div>}
                   </div>
                 </details>
               )}

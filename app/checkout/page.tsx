@@ -56,16 +56,16 @@ export default function Checkout() {
   );
 
   return (
-    <main className="mx-auto grid max-w-4xl gap-6 px-4 py-8 md:grid-cols-5">
+    <main className="mx-auto grid max-w-4xl gap-6 px-4 py-8 sm:px-6 sm:py-10 md:grid-cols-5">
       <section className="space-y-4 md:col-span-3">
-        <h1 className="text-2xl font-semibold">Checkout</h1>
+        <h1 className="page-title">Checkout</h1>
         <div className="card">
           <h2 className="mb-3 text-sm font-semibold">Pay with</h2>
           {methods.length === 0 ? <p className="text-sm text-ink-soft">No payment methods are available right now. Please try again later.</p> : (
             <fieldset className="space-y-2">
               <legend className="sr-only">Payment method</legend>
               {methods.map((m) => (
-                <label key={m.id} className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded border px-3 py-2 text-sm ${walletId === m.id ? "border-accent" : "border-paper-line"}`}>
+                <label key={m.id} className={`flex min-h-[44px] cursor-pointer items-center gap-3 rounded-2xl border px-3 py-2 text-sm ${walletId === m.id ? "border-accent" : "border-paper-line"}`}>
                   <input type="radio" name="method" value={m.id} checked={walletId === m.id} onChange={() => setWalletId(m.id)} />
                   <span className="font-medium">{m.asset}</span>
                   <span className="text-ink-mute">on {NETWORK_LABEL[m.network] ?? m.network}</span>

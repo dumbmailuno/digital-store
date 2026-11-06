@@ -26,7 +26,7 @@ export default async function Products({ searchParams }: { searchParams: { statu
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-semibold">Products</h1>
+        <h1 className="page-title-sm">Products</h1>
         <Link href="/admin/products/new" className="btn">New product</Link>
       </div>
       <form className="flex flex-col gap-2 sm:flex-row" role="search">

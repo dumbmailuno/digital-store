@@ -43,7 +43,7 @@ export function FlagsManager({ flags, settings }: { flags: Flag[]; settings: Set
         <fieldset className="space-y-2">
           <legend className="sr-only">Verification mode</legend>
           {MODES.map((m) => (
-            <label key={m.v} className={`flex cursor-pointer items-start gap-3 rounded border px-3 py-2.5 text-sm ${s.verification_mode === m.v ? "border-accent" : "border-paper-line"}`}>
+            <label key={m.v} className={`flex cursor-pointer items-start gap-3 rounded-2xl border px-3 py-2.5 text-sm ${s.verification_mode === m.v ? "border-accent" : "border-paper-line"}`}>
               <input type="radio" name="mode" className="mt-1" checked={s.verification_mode === m.v} onChange={() => setS({ ...s, verification_mode: m.v })} />
               <span><span className="font-medium">{m.l}</span><span className="block text-xs text-ink-soft">{m.d}</span></span>
             </label>

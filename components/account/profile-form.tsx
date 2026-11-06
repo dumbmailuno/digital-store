@@ -39,7 +39,7 @@ export function ProfileForm({ fullName, avatarId, avatars, emailVerified }: { fu
         {!emailVerified && <p className="mb-2 text-xs text-warn">Verify your email to use a custom avatar.</p>}
         <div className={`grid grid-cols-4 gap-2 sm:grid-cols-6 ${emailVerified ? "" : "pointer-events-none opacity-50"}`}>
           {avatars.map((a) => (
-            <label key={a.id} className={`flex aspect-square cursor-pointer items-center justify-center rounded border p-2 ${avatar === a.id ? "border-accent bg-paper-dim" : "border-paper-line"}`}>
+            <label key={a.id} className={`flex aspect-square cursor-pointer items-center justify-center rounded-2xl border p-2 ${avatar === a.id ? "border-accent bg-paper-dim" : "border-paper-line"}`}>
               <input type="radio" name="avatar" className="sr-only" checked={avatar === a.id} onChange={() => setAvatar(a.id)} />
               <img src={a.url} alt={a.name} className="h-full w-full" />
             </label>

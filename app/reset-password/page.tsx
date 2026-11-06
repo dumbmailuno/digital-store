@@ -8,7 +8,7 @@ export default function ResetPassword() {
   const router = useRouter();
   return (
     <main className="mx-auto w-full max-w-md px-4 py-10 sm:py-16">
-      <h1 className="mb-6 text-2xl font-semibold">Choose a new password</h1>
+      <h1 className="page-title mb-6">Choose a new password</h1>
       <PasswordForm submitLabel="Set new password" onDone={() => router.push("/account")} />
     </main>
   );

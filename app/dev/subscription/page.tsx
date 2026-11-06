@@ -13,7 +13,7 @@ export default async function SubscriptionPage() {
   const d = deriveState(sub);
   return (
     <div className="space-y-5">
-      <h1 className="text-2xl font-semibold">Subscription</h1>
+      <h1 className="page-title-sm">Subscription</h1>
       <div className="card text-sm">
         <p>Status: <b>{sub.status}</b> · {d.reason}</p>
         <p className="mt-1 text-ink-soft">Expires {when(sub.expires_at)} · customers lose access after {when(d.graceEnds.toISOString())}</p>

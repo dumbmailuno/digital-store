@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import { useCart } from "@/lib/cart";
 
-export type CartProduct = { id: string; slug: string; name: string; price_usd: string };
+export type CartProduct = {
+  id: string;
+  slug: string;
+  name: string;
+  price_usd: string;
+  product_images: { path: string; position: number }[];
+};
 
 /** Loads live product data for the IDs in the cart (RLS only returns ACTIVE products). */
 export function useCartProducts() {
@@ -17,11 +23,13 @@ export function useCartProducts() {
     if (ids.length === 0) { setProducts([]); setLoading(false); return; }
     let cancelled = false;
     setLoading(true);
-    createClient().from("products").select("id, slug, name, price_usd").in("id", ids).then(({ data }) => {
-      if (cancelled) return;
-      setProducts((data ?? []) as CartProduct[]);
-      setLoading(false);
-    });
+    createClient().from("products")
+      .select("id, slug, name, price_usd, product_images(path, position)")
+      .in("id", ids).then(({ data }) => {
+        if (cancelled) return;
+        setProducts((data ?? []) as CartProduct[]);
+        setLoading(false);
+      });
     return () => { cancelled = true; };
   }, [ids, ready]);
 

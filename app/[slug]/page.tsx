@@ -16,7 +16,7 @@ export default async function LegalPage({ params }: { params: { slug: string } }
 
   return (
     <main className="mx-auto w-full max-w-2xl px-4 py-10 sm:py-16">
-      <h1 className="text-2xl font-semibold">{data.title}</h1>
+      <h1 className="page-title">{data.title}</h1>
       <p className="mt-1 text-xs text-ink-mute">Last updated {new Date(data.updated_at).toLocaleDateString()}</p>
       {/* plain text rendering on purpose: no raw HTML from the database */}
       <div className="mt-6 whitespace-pre-wrap text-sm leading-7 text-ink-soft">{data.body_md}</div>

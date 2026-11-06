@@ -6,18 +6,31 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: { DEFAULT: "#16181d", soft: "#4b5160", mute: "#767d8c" },
-        paper: { DEFAULT: "#ffffff", dim: "#f6f7f9", line: "#e3e6eb" },
-        accent: { DEFAULT: "#2b4a7d", hover: "#223b64" },
-        ok: "#1f7a4d",
-        warn: "#9a6700",
-        bad: "#b3261e",
+        ink: {
+          DEFAULT: "rgb(var(--ink) / <alpha-value>)",
+          soft: "rgb(var(--ink-soft) / <alpha-value>)",
+          mute: "rgb(var(--ink-mute) / <alpha-value>)",
+        },
+        paper: {
+          DEFAULT: "rgb(var(--paper) / <alpha-value>)",
+          dim: "rgb(var(--paper-dim) / <alpha-value>)",
+          line: "rgb(var(--paper-line) / <alpha-value>)",
+        },
+        accent: {
+          DEFAULT: "rgb(var(--accent) / <alpha-value>)",
+          hover: "rgb(var(--accent-hover) / <alpha-value>)",
+        },
+        ok: "rgb(var(--ok) / <alpha-value>)",
+        warn: "rgb(var(--warn) / <alpha-value>)",
+        bad: "rgb(var(--bad) / <alpha-value>)",
+        nav: "rgb(var(--nav) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        poppins: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
-      borderRadius: { DEFAULT: "6px" },
+      borderRadius: { DEFAULT: "16px", sm: "12px", md: "16px", lg: "20px" },
     },
   },
   plugins: [],
